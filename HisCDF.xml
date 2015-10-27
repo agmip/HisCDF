@@ -1,0 +1,39 @@
+<tool id="hiscdf" name="HistorySimulation_CDF" version="1.0.0" force_history_refresh="True">
+  <requirements>
+    <requirement type="package" version="1.0.0">hisCDF</requirement>
+    <requirement type="package" version="1.0.0">R</requirement>
+  </requirements>
+   <description>Generating CDF Plots for History Simulations</description>
+  <command>hiscdf.sh $inputfiles $pdfoutput</command>
+  <inputs>
+        <repeat name="macocsvinput" title="Acmo_csv">
+            <param name="acmocsv" type="data" format="acmo.csv" label="Acmo csv Input" />
+        </repeat>
+  </inputs>
+  <configfiles>
+<configfile name="inputfiles">
+#for $i, $s in enumerate( $macocsvinput ):
+#if $s.acmocsv!="":
+${s.acmocsv}
+#end if
+#end for
+</configfile>
+  </configfiles>
+  <outputs>
+    <data format="pdf" name="pdfoutput" label="Simulation Output Plots">
+	<change_format>
+		<when input="plot_format" value="png" format="png" />
+		<when input="plot_format" value="tiff" format="tiff" />
+		<when input="plot_format" value="jpeg" format="jpeg" />
+	</change_format>
+    </data>
+  </outputs>
+  <help>
+
+**What it does**
+
+The History CDF app contains R scripts that generates a CDF plot for comparing historical and simulated yields, which is designed for task of idenfiying the best parameters in Regional Integrated Assessment.
+
+  </help>
+</tool>
+
